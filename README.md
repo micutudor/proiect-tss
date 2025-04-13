@@ -11,7 +11,7 @@
 
 ---
 
-## ✅ CRUD API Endpoints
+## CRUD API Endpoints
 
 | Method | Endpoint               | Description                      |
 |--------|------------------------|----------------------------------|
@@ -23,11 +23,11 @@
 
 ---
 
-## 🧪 Unit Tests
+## Unit Tests
 
 All tests are written using **PHPUnit** and are located in the `tests/` directory.
 
-### ✔️ Test 1: `testGetAllReturnsVehicles`
+### Test 1: `testGetAllReturnsVehicles`
 
 **Purpose:**  
 Tests if `VehicleController::getAll()` returns all vehicles in proper JSON format with status 200.
@@ -45,7 +45,7 @@ Tests if `VehicleController::getAll()` returns all vehicles in proper JSON forma
 
 ---
 
-### ✔️ Test 2: `testCreateReturnsCreated`
+### Test 2: `testCreateReturnsCreated`
 
 **Purpose:**  
 Tests if `VehicleController::create()` validates input and creates a vehicle successfully.
@@ -63,7 +63,7 @@ Tests if `VehicleController::create()` validates input and creates a vehicle suc
 
 ---
 
-### ✔️ Test 3: `testUpdateReturnsSuccess`
+### Test 3: `testUpdateReturnsSuccess`
 
 **Purpose:**  
 Tests if `VehicleController::update()` updates a vehicle correctly.
@@ -82,13 +82,11 @@ Tests if `VehicleController::update()` updates a vehicle correctly.
 
 ---
 
-## 🧠 Types of Tests
+## Types of Tests
 
-- ✅ **Unit Tests**: Each method is tested in isolation by mocking dependencies (no database connection).
-- 🧪 **Behavioral Coverage**:
+- **Unit Tests**: Each method is tested in isolation by mocking dependencies (no database connection).
+- **Behavioral Coverage**:
   - Response status codes
   - Output content (JSON)
   - Input validation
   - PSR-7 compliance
-
----
