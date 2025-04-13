@@ -5,23 +5,25 @@ use App\config\Database;
 use PDO;
 
 class Vehicle {
+    private PDO $db;
 
-    public static function all() {
-        $db = Database::connect();
-        $stmt = $db->query("SELECT * FROM autovehicule");
+    public function __construct(Database $database) {
+        $this->db = $database->getConnection();
+    }
+
+    public function all(): array {
+        $stmt = $this->db->query("SELECT * FROM autovehicule");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function find($id) {
-        $db = Database::connect();
-        $stmt = $db->prepare("SELECT * FROM autovehicule WHERE id = ?");
+    public function find(int $id): array|false {
+        $stmt = $this->db->prepare("SELECT * FROM autovehicule WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function save($data) {
-        $db = Database::connect();
-        $stmt = $db->prepare("
+    public function save(array $data): array|false {
+        $stmt = $this->db->prepare("
             INSERT INTO autovehicule (marca, model, data_expirare_itp, data_expirare_rovinieta, data_expirare_trusa, data_expirare_rca, numar_inmatriculare)
             VALUES (:marca, :model, :itp, :rovinieta, :trusa, :rca, :nr)
         ");
@@ -35,13 +37,11 @@ class Vehicle {
             ':nr' => $data['numar_inmatriculare']
         ]);
 
-        return self::find($db->lastInsertId());
+        return $this->find($this->db->lastInsertId());
     }
 
-    public static function update($id, $data) {
-        $db = Database::connect();
-
-        $stmt = $db->prepare("
+    public function update(int $id, array $data): array|false {
+        $stmt = $this->db->prepare("
             UPDATE autovehicule SET
                 marca = :marca,
                 model = :model,
@@ -52,7 +52,6 @@ class Vehicle {
                 numar_inmatriculare = :nr
             WHERE id = :id
         ");
-
         $stmt->execute([
             ':marca' => $data['marca'],
             ':model' => $data['model'],
@@ -64,12 +63,11 @@ class Vehicle {
             ':id' => $id
         ]);
 
-        return self::find($id);
+        return $this->find($id);
     }
 
-    public static function delete($id) {
-        $db = Database::connect();
-        $stmt = $db->prepare("DELETE FROM autovehicule WHERE id = ?");
+    public function delete(int $id): void {
+        $stmt = $this->db->prepare("DELETE FROM autovehicule WHERE id = ?");
         $stmt->execute([$id]);
     }
 }

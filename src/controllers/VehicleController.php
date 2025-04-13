@@ -7,14 +7,20 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class VehicleController {
 
+    private Vehicle $vehicle;
+
+    public function __construct(Vehicle $vehicle) {
+        $this->vehicle = $vehicle;
+    }
+
     public function getAll(Request $request, Response $response): Response {
-        $vehicles = Vehicle::all();
+        $vehicles = $this->vehicle->all();
         $response->getBody()->write(json_encode($vehicles));
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function getById(Request $request, Response $response, $args): Response {
-        $vehicle = Vehicle::find($args['id']);
+        $vehicle = $this->vehicle->find($args['id']);
         if (!$vehicle) {
             $response->getBody()->write(json_encode(['error' => 'Nu am gasit autovehiculul!']));
             return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
@@ -32,13 +38,13 @@ class VehicleController {
             return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
         }
 
-        Vehicle::save($data);
+        $this->vehicle->save($data);
 
         return $response->withStatus(201)->withHeader('Content-Type', 'application/json');
     }
 
     public function update(Request $request, Response $response, $args): Response {
-        $vehicle = Vehicle::find($args['id']);
+        $vehicle = $this->vehicle->find($args['id']);
 
         if (!$vehicle) {
             $response->getBody()->write(json_encode(['error' => 'Nu am gasit autovehiculul!']));
@@ -52,19 +58,19 @@ class VehicleController {
             return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
         }
 
-        Vehicle::update($args['id'], $data);
+        $this->vehicle->update($args['id'], $data);
 
         return $response->withHeader('Content-Type', 'application/json');
     }
 
     public function delete(Request $request, Response $response, $args): Response {
-        $vehicle = Vehicle::find($args['id']);
+        $vehicle = $this->vehicle->find($args['id']);
         if (!$vehicle) {
             $response->getBody()->write(json_encode(['error' => 'Nu am gasit autovehiculul!']));
             return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
         }
 
-        Vehicle::delete($args['id']);
+        $this->vehicle->delete($args['id']);
         return $response->withStatus(204); // No Content
     }
 }
