@@ -1,0 +1,91 @@
+{
+  "info": {
+    "name": "Parc Auto API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET All Vehicles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://proiect-tss.test/vehicles",
+          "protocol": "http",
+          "host": ["proiect-tss.test"],
+          "path": ["vehicles"]
+        }
+      }
+    },
+    {
+      "name": "GET Vehicle By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://proiect-tss.test/vehicles/1",
+          "protocol": "http",
+          "host": ["proiect-tss.test"],
+          "path": ["vehicles", "1"]
+        }
+      }
+    },
+    {
+      "name": "POST Create Vehicle",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"marca\": \"Dacia\",\n  \"model\": \"Logan\",\n  \"data_expirare_itp\": \"2025-06-01\",\n  \"data_expirare_rovinieta\": \"2024-12-01\",\n  \"data_expirare_trusa\": \"2026-01-01\",\n  \"data_expirare_rca\": \"2024-10-10\",\n  \"numar_inmatriculare\": \"B123XYZ\"\n}"
+        },
+        "url": {
+          "raw": "http://proiect-tss.test/vehicles",
+          "protocol": "http",
+          "host": ["proiect-tss.test"],
+          "path": ["vehicles"]
+        }
+      }
+    },
+    {
+      "name": "PUT Update Vehicle",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"marca\": \"Ford\",\n  \"model\": \"Focus\",\n  \"data_expirare_itp\": \"2026-06-01\",\n  \"data_expirare_rovinieta\": \"2025-12-01\",\n  \"data_expirare_trusa\": \"2027-01-01\",\n  \"data_expirare_rca\": \"2025-10-10\",\n  \"numar_inmatriculare\": \"B999YYY\"\n}"
+        },
+        "url": {
+          "raw": "http://proiect-tss.test/vehicles/1",
+          "protocol": "http",
+          "host": ["proiect-tss.test"],
+          "path": ["vehicles", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE Vehicle",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://proiect-tss.test/vehicles/1",
+          "protocol": "http",
+          "host": ["proiect-tss.test"],
+          "path": ["vehicles", "1"]
+        }
+      }
+    }
+  ]
+}
