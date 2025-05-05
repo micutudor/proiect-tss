@@ -82,11 +82,58 @@ Tests if `VehicleController::update()` updates a vehicle correctly.
 
 ---
 
+## Equivalence Classes
+
+**What is Equivalence Partitioning**
+
+- Equivalence partitioning (or equivalence classes) is a test design technique where the input data of a program is divided into partitions of valid and invalid data. Each partition represents a set of values that the system is expected to handle in the same way.
+- Instead of testing every possible input, it is enough to test each partition — assuming it represents the rest.
+
+**Equivalence Classes in VehicleController**
+
+1. create(Request $request, Response $response)
+   
+| Input                          | Class Type | Description                                       | Example                   |
+| ------------------------------ | ---------- | ------------------------------------------------- | ------------------------- |
+| `$data['numar_inmatriculare']` | Valid      | String matching `/^[A-Z]{1,2}\d{2,3}[A-Z]{1,3}$/` | `B123ABC`                 |
+|                                | Invalid    | Any string not matching the pattern               | `1234BCA`, `abc123`, `""` |
+
+
+
+2. update(Request $request, Response $response, $args)
+
+| Input                          | Class Type | Description               | Example           |
+| ------------------------------ | ---------- | ------------------------- | ----------------- |
+| `$args['id']`                  | Valid      | Existing vehicle ID       | `5`               |
+|                                | Invalid    | Non-existing vehicle ID   | `999`             |
+| `$data['numar_inmatriculare']` | Valid      | String matching regex     | `CJ123XYZ`        |
+|                                | Invalid    | String not matching regex | `AB-123-CD`, `""` |
+
+3. getById(Request $request, Response $response, $args)
+   
+| Input         | Class Type | Description             | Example |
+| ------------- | ---------- | ----------------------- | ------- |
+| `$args['id']` | Valid      | Existing vehicle ID     | `3`     |
+|               | Invalid    | Non-existing vehicle ID | `404`   |
+
+4. delete(Request $request, Response $response, $args)
+
+| Input         | Class Type | Description             | Example |
+| ------------- | ---------- | ----------------------- | ------- |
+| `$args['id']` | Valid      | Existing vehicle ID     | `7`     |
+|               | Invalid    | Non-existing vehicle ID | `404`   |
+
+
+
 ## Types of Tests
 
 - **Unit Tests**: Each method is tested in isolation by mocking dependencies (no database connection).
-- **Behavioral Coverage**:
-  - Response status codes
-  - Output content (JSON)
-  - Input validation
-  - PSR-7 compliance
+  - **Behavioral Coverage**:
+    - Response status codes
+    - Output content (JSON)
+    - Input validation
+    - PSR-7 compliance
+    - Equivalence Partitioning:
+        -Inputs are divided into valid and invalid equivalence classes
+        -Ensures representative testing without exhaustive input checks
+        -Helps verify how the controller handles boundary and non-conforming data consistently
