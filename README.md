@@ -133,7 +133,7 @@ Tests if `VehicleController::update()` updates a vehicle correctly.
     - Output content (JSON)
     - Input validation
     - PSR-7 compliance
-    - Equivalence Partitioning:
-        -Inputs are divided into valid and invalid equivalence classes
-        -Ensures representative testing without exhaustive input checks
-        -Helps verify how the controller handles boundary and non-conforming data consistently
+    - **Equivalence Partitioning**:
+       - Inputs are divided into **valid** and **invalid** equivalence classes
+       - Allows for **representative testing** without checking every possible input
+       - Helps verify how the controller handles **boundary** and **non-conforming** data
