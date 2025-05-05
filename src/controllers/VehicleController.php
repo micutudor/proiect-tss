@@ -71,6 +71,6 @@ class VehicleController {
         }
 
         $this->vehicle->delete($args['id']);
-        return $response->withStatus(204); // No Content
+        return $response->withStatus(204);
     }
 }
