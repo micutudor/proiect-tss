@@ -32,7 +32,7 @@ class VehicleTestDecisionCoverage extends TestCase
     public function testGetAllVehicles()
     {
         $request = $this->createMock(ServerRequestInterface::class);
-        $this->vehicle->method('all')->willReturn([['id' => 1, 'numar_inmatriculare' => 'B123ABC']]);
+        $this->vehicle->method('all')->willReturn([['id' => 1, 'numar_inmatriculare' => 'B682SPM']]);
 
         $result = $this->controller->getAll($request, $this->response);
 
@@ -43,7 +43,7 @@ class VehicleTestDecisionCoverage extends TestCase
     public function testGetByIdFound()
     {
         $request = $this->createMock(ServerRequestInterface::class);
-        $this->vehicle->method('find')->willReturn(['id' => 1, 'numar_inmatriculare' => 'B123ABC']);
+        $this->vehicle->method('find')->willReturn(['id' => 1, 'numar_inmatriculare' => 'B682SPM']);
 
         $result = $this->controller->getById($request, $this->response, ['id' => 1]);
 
@@ -54,8 +54,8 @@ class VehicleTestDecisionCoverage extends TestCase
     public function testGetByIdNotFound()
     {
         $request = $this->createMock(ServerRequestInterface::class);
-        $this->vehicle->method('find')->willReturn(false); // Fix: use false not null
-
+        $this->vehicle->method('find')->willReturn(false);
+        
         $result = $this->controller->getById($request, $this->response, ['id' => 999]);
 
         $this->assertInstanceOf(ResponseInterface::class, $result);
@@ -65,7 +65,7 @@ class VehicleTestDecisionCoverage extends TestCase
     public function testCreateValid()
     {
         $request = $this->createMock(ServerRequestInterface::class);
-        $request->method('getParsedBody')->willReturn(['numar_inmatriculare' => 'B123ABC']);
+        $request->method('getParsedBody')->willReturn(['numar_inmatriculare' => 'B111CCC']);
 
         $this->vehicle->expects($this->once())->method('save');
 
@@ -90,7 +90,7 @@ class VehicleTestDecisionCoverage extends TestCase
     public function testUpdateFoundValid()
     {
         $request = $this->createMock(ServerRequestInterface::class);
-        $request->method('getParsedBody')->willReturn(['numar_inmatriculare' => 'B123ABC']);
+        $request->method('getParsedBody')->willReturn(['numar_inmatriculare' => 'B111CCC']);
 
         $this->vehicle->method('find')->willReturn(['id' => 1]);
         $this->vehicle->expects($this->once())->method('update');
@@ -118,7 +118,7 @@ class VehicleTestDecisionCoverage extends TestCase
     public function testUpdateNotFound()
     {
         $request = $this->createMock(ServerRequestInterface::class);
-        $this->vehicle->method('find')->willReturn(false); // Fix: use false not null
+        $this->vehicle->method('find')->willReturn(false);
 
         $result = $this->controller->update($request, $this->response, ['id' => 999]);
 
@@ -138,10 +138,11 @@ class VehicleTestDecisionCoverage extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $result);
     }
 
+    // covers: if (!$vehicle) -> TRUE branch
     public function testDeleteNotFound()
     {
         $request = $this->createMock(ServerRequestInterface::class);
-        $this->vehicle->method('find')->willReturn(false); // Fix: use false not null
+        $this->vehicle->method('find')->willReturn(false);
 
         $result = $this->controller->delete($request, $this->response, ['id' => 999]);
 

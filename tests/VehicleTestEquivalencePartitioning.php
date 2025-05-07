@@ -30,7 +30,7 @@ class VehicleTestEquivalencePartitioning extends TestCase
         $vehicleMock->expects($this->once())->method('save');
 
         $controller = new VehicleController($vehicleMock);
-        $request = $this->createMockRequest(['numar_inmatriculare' => 'B123ABC']);
+        $request = $this->createMockRequest(['numar_inmatriculare' => 'B682SPM']);
         $response = $this->createMockResponse();
 
         $result = $controller->create($request, $response);
@@ -44,7 +44,7 @@ class VehicleTestEquivalencePartitioning extends TestCase
         $vehicleMock->expects($this->never())->method('save');
 
         $controller = new VehicleController($vehicleMock);
-        $request = $this->createMockRequest(['numar_inmatriculare' => '123ABC']);
+        $request = $this->createMockRequest(['numar_inmatriculare' => '999XYZ']);
         $response = $this->createMockResponse();
 
         $result = $controller->create($request, $response);
@@ -55,7 +55,7 @@ class VehicleTestEquivalencePartitioning extends TestCase
     public function testGetByIdWithValidId()
     {
         $vehicleMock = $this->createMock(Vehicle::class);
-        $vehicleMock->method('find')->willReturn(['id' => 1, 'numar_inmatriculare' => 'B123ABC']);
+        $vehicleMock->method('find')->willReturn(['id' => 1, 'numar_inmatriculare' => 'B682SPM']);
 
         $controller = new VehicleController($vehicleMock);
         $request = $this->createMock(ServerRequestInterface::class);
@@ -87,7 +87,7 @@ class VehicleTestEquivalencePartitioning extends TestCase
         $vehicleMock->expects($this->once())->method('update');
 
         $controller = new VehicleController($vehicleMock);
-        $request = $this->createMockRequest(['numar_inmatriculare' => 'CJ99XYZ']);
+        $request = $this->createMockRequest(['numar_inmatriculare' => 'VS66MTV']);
         $response = $this->createMockResponse();
 
         $result = $controller->update($request, $response, ['id' => 1]);
@@ -102,7 +102,7 @@ class VehicleTestEquivalencePartitioning extends TestCase
         $vehicleMock->expects($this->never())->method('update');
 
         $controller = new VehicleController($vehicleMock);
-        $request = $this->createMockRequest(['numar_inmatriculare' => 'XYZ9999']);
+        $request = $this->createMockRequest(['numar_inmatriculare' => '888AAA']);
         $response = $this->createMockResponse();
 
         $result = $controller->update($request, $response, ['id' => 1]);
@@ -117,7 +117,7 @@ class VehicleTestEquivalencePartitioning extends TestCase
         $vehicleMock->expects($this->never())->method('update');
 
         $controller = new VehicleController($vehicleMock);
-        $request = $this->createMockRequest(['numar_inmatriculare' => 'B100XYZ']);
+        $request = $this->createMockRequest(['numar_inmatriculare' => 'B682ZZZ']);
         $response = $this->createMockResponse();
 
         $result = $controller->update($request, $response, ['id' => 999]);
