@@ -98,8 +98,6 @@ Tests if `VehicleController::update()` updates a vehicle correctly.
 | `$data['numar_inmatriculare']` | Valid      | String matching `/^[A-Z]{1,2}\d{2,3}[A-Z]{1,3}$/` | `B123ABC`                 |
 |                                | Invalid    | Any string not matching the pattern               | `1234BCA`, `abc123`, `""` |
 
-
-
 2. update(Request $request, Response $response, $args)
 
 | Input                          | Class Type | Description               | Example           |
@@ -123,17 +121,109 @@ Tests if `VehicleController::update()` updates a vehicle correctly.
 | `$args['id']` | Valid      | Existing vehicle ID     | `7`     |
 |               | Invalid    | Non-existing vehicle ID | `404`   |
 
+## Boundary Value Tests
 
+Boundary value tests are a type of black-box testing technique in software testing, focused on identifying errors at the boundaries of input domains rather than within the range.
+
+### 1. create(Request $request, Response $response)
+
+**Input**: $data['numar_inmatriculare]  
+**Pattern**: /^[A-Z]{1,2}\d{2,3}[A-Z]{1,3}$/
+
+**Boundaries**:
+- Number of letters at the start: 1 or 2 uppercase letters
+- Number of digits: 2 or 3 digits
+- Number of letters at the end: 1 to 3 uppercase letters
+
+**Test Cases**:
+
+| Test Case               | Input    | Expected Result |
+| ----------------------- | -------- | --------------- |
+| Minimum valid           | B12A     | 201 Created     |
+| Maximum valid           | AB123ABC | 201 Created     |
+| Below minimum digits    | B1A      | 400 Bad Request |
+| Above maximum digits    | B1234A   | 400 Bad Request |
+| Below min letters start | 1B23C    | 400 Bad Request |
+| Above max letters start | ABC123A  | 400 Bad Request |
+| Below min letters end   | B123     | 400 Bad Request |
+| Above max letters end   | B123ABCD | 400 Bad Request |
+
+---
+
+### 2. update(Request $request, Response $response, $args)
+
+**Input**:
+- $args['id'] (as primary key/identifier)
+- $data['numar_inmatriculare'] (same pattern as above)
+
+**Boundaries**:
+- **ID**:
+   - Minimum valid ID: 1
+   - Non-existing ID: assuming max existing is 100, test with 101
+
+**Test Cases**:
+
+| Test Case              | Input ID | numar_inmatriculare | Expected Result |
+| ---------------------- | -------- | -------------------- | --------------- |
+| Valid min ID           | 1        | B12A                 | 200 OK          |
+| Valid max ID           | 100      | AB123ABC             | 200 OK          |
+| Non-existing below min | 0        | any                  | 404 Not Found   |
+| Non-existing above max | 101      | any                  | 404 Not Found   |
+| Valid min pattern      | 1        | B12A                 | 200 OK          |
+| Valid max pattern      | 1        | AB123ABC             | 200 OK          |
+| Invalid pattern        | 1        | 1234A                | 400 Bad Request |
+
+---
+
+### 3. getById(Request $request, Response $response, $args)
+
+**Boundaries**:
+- **ID value:**
+   - Existing IDs: 1 to 100
+   - Non-existing: 0 or 101
+
+**Test Cases**:
+
+| Test Case       | Input ID | Expected Result |
+| --------------- | -------- | --------------- |
+| Existing min ID | 1        | 200 OK          |
+| Existing max ID | 100      | 200 OK          |
+| Below min       | 0        | 404 Not Found   |
+| Above max       | 101      | 404 Not Found   |
+
+---
+
+### 4. delete(Request $request, Response $response, $args)
+
+**Boundaries**:
+- **ID value:**
+   - Existing IDs: 1 to 100
+   - Non-existing: 0 or 101
+
+**Test Cases**:
+
+| Test Case       | Input ID | Expected Result |
+| --------------- | -------- | --------------- |
+| Existing min ID | 1        | 204 No Content  |
+| Existing max ID | 100      | 204 No Content  |
+| Below min       | 0        | 404 Not Found   |
+| Above max       | 101      | 404 Not Found   |
+
+---
 
 ## Types of Tests
 
 - **Unit Tests**: Each method is tested in isolation by mocking dependencies (no database connection).
-  - **Behavioral Coverage**:
-    - Response status codes
-    - Output content (JSON)
-    - Input validation
-    - PSR-7 compliance
-    - **Equivalence Partitioning**:
-       - Inputs are divided into **valid** and **invalid** equivalence classes
-       - Allows for **representative testing** without checking every possible input
-       - Helps verify how the controller handles **boundary** and **non-conforming** data
+- **Behavioral Coverage**:
+ - Response status codes
+ - Output content (JSON)
+ - Input validation
+ - PSR-7 compliance
+ - **Equivalence Partitioning**:
+    - Inputs are divided into **valid** and **invalid** equivalence classes
+    - Allows for **representative testing** without checking every possible input
+    - Helps verify how the controller handles **boundary** and **non-conforming** data
+- **Boundary Value Tests:**
+   - Pattern Validation for License Plate for the valid license plate format using the regular expression /^[A-Z]{1,2}\d{2,3}[A-Z]{1,3}$/, which ensures that inputs are tested against the minimum and maximum number of characters allowed in each section (start letters, digits, and end letters).
+   - For methods like update, getById, and delete, using ID boundaries (min ID = 1, max ID = 100), as well as non-existing IDs (e.g., 0 and 101), simulate edge cases of accessing valid vs invalid records. This ensures that the system correctly handles valid IDs (responses 200 OK or 204 No Content) and returns 404 Not Found for invalid IDs.
+
