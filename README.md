@@ -219,7 +219,7 @@ Boundary value tests are a type of black-box testing technique in software testi
 
 ![CFG](https://github.com/user-attachments/assets/f4716743-8f78-4b0f-9a51-a549708f653e)
 
-### Flow Steps (“Flux” Stages)
+### Flow Steps
 
 | Label                     | Step Description         | Purpose                                                    |
 | ------------------------- | ------------------------ | ---------------------------------------------------------- |
@@ -285,4 +285,10 @@ So the control-flow graph has a cyclomatic complexity of *12*, meaning there are
 - **Boundary Value Tests:**
    - Pattern Validation for License Plate for the valid license plate format using the regular expression /^[A-Z]{1,2}\d{2,3}[A-Z]{1,3}$/, which ensures that inputs are tested against the minimum and maximum number of characters allowed in each section (start letters, digits, and end letters).
    - For methods like update, getById, and delete, using ID boundaries (min ID = 1, max ID = 100), as well as non-existing IDs (e.g., 0 and 101), simulate edge cases of accessing valid vs invalid records. This ensures that the system correctly handles valid IDs (responses 200 OK or 204 No Content) and returns 404 Not Found for invalid IDs.
+ - **Structural Testing**
+   - A detailed **Control Flow Graph (CFG)** was created for all controller logic (create, getById, update, delete).
+   - **Cyclomatic Complexity = 12**, indicating 12 independent execution paths through the controller.
+   - Ensures:
+     - All branches, conditions, and response codes are exercised
+     - Test coverage across normal, error, and edge paths
 
