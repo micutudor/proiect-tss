@@ -23,6 +23,8 @@
 
 ---
 
+## Functional Testing (Black-Box Testing)
+
 ## Unit Tests
 
 All tests are written using **PHPUnit** and are located in the `tests/` directory.
@@ -211,6 +213,63 @@ Boundary value tests are a type of black-box testing technique in software testi
 
 ---
 
+## Structural Testing (White-Box Testing)
+
+### Control Flow Graph (CFG)
+
+![CFG](https://github.com/user-attachments/assets/f4716743-8f78-4b0f-9a51-a549708f653e)
+
+### Flow Steps
+
+| Label                     | Step Description         | Purpose                                                    |
+| ------------------------- | ------------------------ | ---------------------------------------------------------- |
+| *A*                     | *Start Request*        | Entry-point for every call                                 |
+| *B*                     | *Identify HTTP Method* | Dispatches to the correct handler (GET, POST, PUT, DELETE) |
+| *GET /vehicles/{id}*    |                          |                                                            |
+| C1                        | getById                | Controller entry                                           |
+| C2                        | Find vehicle by ID       | Repository lookup                                          |
+| C3                        | 404 Not Found            | Vehicle missing                                            |
+| C4                        | 200 OK + data            | Vehicle found                                              |
+| *POST /vehicles*        |                          |                                                            |
+| D1                        | create                 | Controller entry                                           |
+| D2                        | Validate licence plate   | Business rule check                                        |
+| D3                        | 400 Bad Request          | Plate invalid                                              |
+| D4                        | Save vehicle             | Persist entity                                             |
+| D5                        | 500 Error                | DB failure                                                 |
+| D6                        | 201 Created              | Persist succeeded                                          |
+| *PUT /vehicles/{id}*    |                          |                                                            |
+| E1                        | update                 | Controller entry                                           |
+| E2                        | Find vehicle by ID       | Repository lookup                                          |
+| E3                        | 404 Not Found            | Vehicle missing                                            |
+| E4                        | Validate licence plate   | Business rule check                                        |
+| E5                        | 400 Bad Request          | Plate invalid                                              |
+| E6                        | Update vehicle           | Persist changes                                            |
+| E7                        | 500 Error                | DB failure                                                 |
+| E8                        | 200 OK                   | Update succeeded                                           |
+| *DELETE /vehicles/{id}* |                          |                                                            |
+| F1                        | delete                 | Controller entry                                           |
+| F2                        | Find vehicle by ID       | Repository lookup                                          |
+| F3                        | 404 Not Found            | Vehicle missing                                            |
+| F4                        | Delete vehicle           | Remove entity                                              |
+| F5                        | 500 Error                | DB failure                                                 |
+| F6                        | 204 No Content           | Deletion succeeded                                         |
+| *Z*                     | *End*                  | Unified exit node                                          |
+
+---
+
+### Cyclomatic Complexity
+
+Using McCabe’s formula
+  *M = E – N + 2 P*
+
+* *N* (nodes) = 27
+* *E* (edges) = 37
+* *P* (connected components) = 1
+
+*M = 37 – 27 + 2 × 1 = 12*
+
+So the control-flow graph has a cyclomatic complexity of *12*, meaning there are 12 linearly independent execution paths through the API request logic.
+
 ## Types of Tests
 
 - **Unit Tests**: Each method is tested in isolation by mocking dependencies (no database connection).
@@ -226,4 +285,10 @@ Boundary value tests are a type of black-box testing technique in software testi
 - **Boundary Value Tests:**
    - Pattern Validation for License Plate for the valid license plate format using the regular expression /^[A-Z]{1,2}\d{2,3}[A-Z]{1,3}$/, which ensures that inputs are tested against the minimum and maximum number of characters allowed in each section (start letters, digits, and end letters).
    - For methods like update, getById, and delete, using ID boundaries (min ID = 1, max ID = 100), as well as non-existing IDs (e.g., 0 and 101), simulate edge cases of accessing valid vs invalid records. This ensures that the system correctly handles valid IDs (responses 200 OK or 204 No Content) and returns 404 Not Found for invalid IDs.
+ - **Structural Testing**
+   - A detailed **Control Flow Graph (CFG)** was created for all controller logic (create, getById, update, delete).
+   - **Cyclomatic Complexity = 12**, indicating 12 independent execution paths through the controller.
+   - Ensures:
+     - All branches, conditions, and response codes are exercised
+     - Test coverage across normal, error, and edge paths
 
