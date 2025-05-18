@@ -9,7 +9,8 @@
   "require-dev": {
     "phpunit/phpunit": "^10",
     "swagger-api/swagger-ui": "^4.15",
-    "mockery/mockery": "^1.6"
+    "mockery/mockery": "^1.6",
+    "phpunit/php-code-coverage": "^10.1"
   },
   "autoload": {
     "psr-4": {

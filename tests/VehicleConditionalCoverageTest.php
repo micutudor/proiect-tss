@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\StreamFactory;
 
-class VehicleTestConditionalCoverage extends TestCase
+class VehicleConditionalCoverageTest extends TestCase
 {
     private function createMockRequest(array $parsedBody = []): ServerRequestInterface {
         $request = $this->createMock(ServerRequestInterface::class);

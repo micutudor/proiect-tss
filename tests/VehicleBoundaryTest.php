@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
-class VehicleTestBoundary extends TestCase
+class VehicleBoundaryTest extends TestCase
 {
     private Vehicle $vehicle;
     private VehicleController $controller;

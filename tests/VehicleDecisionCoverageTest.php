@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 
-class VehicleTestDecisionCoverage extends TestCase
+class VehicleDecisionCoverageTest extends TestCase
 {
     private $vehicle;
     private $response;
