@@ -270,6 +270,13 @@ Using McCabe’s formula
 
 So the control-flow graph has a cyclomatic complexity of *12*, meaning there are 12 linearly independent execution paths through the API request logic.
 
+## Code coverage
+
+![CC1](https://github.com/user-attachments/assets/9ccfa45a-a10c-4785-9b49-937f6f335cd4)
+![CC2](https://github.com/user-attachments/assets/0276290c-c0ac-425b-b535-eac7328ed13b)
+
+
+
 ## Types of Tests
 
 - **Unit Tests**: Each method is tested in isolation by mocking dependencies (no database connection).
