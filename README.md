@@ -23,6 +23,8 @@
 
 ---
 
+## Functional Testing (Black-Box Testing)
+
 ## Unit Tests
 
 All tests are written using **PHPUnit** and are located in the `tests/` directory.
@@ -210,6 +212,63 @@ Boundary value tests are a type of black-box testing technique in software testi
 | Above max       | 101      | 404 Not Found   |
 
 ---
+
+## Structural Testing (White-Box Testing)
+
+### Control Flow Graph (CFG)
+
+![CFG](https://github.com/user-attachments/assets/f4716743-8f78-4b0f-9a51-a549708f653e)
+
+### Flow Steps (“Flux” Stages)
+
+| Label                     | Step Description         | Purpose                                                    |
+| ------------------------- | ------------------------ | ---------------------------------------------------------- |
+| *A*                     | *Start Request*        | Entry-point for every call                                 |
+| *B*                     | *Identify HTTP Method* | Dispatches to the correct handler (GET, POST, PUT, DELETE) |
+| *GET /vehicles/{id}*    |                          |                                                            |
+| C1                        | getById                | Controller entry                                           |
+| C2                        | Find vehicle by ID       | Repository lookup                                          |
+| C3                        | 404 Not Found            | Vehicle missing                                            |
+| C4                        | 200 OK + data            | Vehicle found                                              |
+| *POST /vehicles*        |                          |                                                            |
+| D1                        | create                 | Controller entry                                           |
+| D2                        | Validate licence plate   | Business rule check                                        |
+| D3                        | 400 Bad Request          | Plate invalid                                              |
+| D4                        | Save vehicle             | Persist entity                                             |
+| D5                        | 500 Error                | DB failure                                                 |
+| D6                        | 201 Created              | Persist succeeded                                          |
+| *PUT /vehicles/{id}*    |                          |                                                            |
+| E1                        | update                 | Controller entry                                           |
+| E2                        | Find vehicle by ID       | Repository lookup                                          |
+| E3                        | 404 Not Found            | Vehicle missing                                            |
+| E4                        | Validate licence plate   | Business rule check                                        |
+| E5                        | 400 Bad Request          | Plate invalid                                              |
+| E6                        | Update vehicle           | Persist changes                                            |
+| E7                        | 500 Error                | DB failure                                                 |
+| E8                        | 200 OK                   | Update succeeded                                           |
+| *DELETE /vehicles/{id}* |                          |                                                            |
+| F1                        | delete                 | Controller entry                                           |
+| F2                        | Find vehicle by ID       | Repository lookup                                          |
+| F3                        | 404 Not Found            | Vehicle missing                                            |
+| F4                        | Delete vehicle           | Remove entity                                              |
+| F5                        | 500 Error                | DB failure                                                 |
+| F6                        | 204 No Content           | Deletion succeeded                                         |
+| *Z*                     | *End*                  | Unified exit node                                          |
+
+---
+
+### Cyclomatic Complexity
+
+Using McCabe’s formula
+  *M = E – N + 2 P*
+
+* *N* (nodes) = 27
+* *E* (edges) = 37
+* *P* (connected components) = 1
+
+*M = 37 – 27 + 2 × 1 = 12*
+
+So the control-flow graph has a cyclomatic complexity of *12*, meaning there are 12 linearly independent execution paths through the API request logic.
 
 ## Types of Tests
 
