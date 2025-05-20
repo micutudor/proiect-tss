@@ -19,7 +19,6 @@ Functional (VehicleAIFunctionalTest):
 | -------------------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | **VehicleBoundaryTest**                | *Boundary value analysis*            | Tests create/get/delete at the minimum & maximum acceptable values (plates and IDs) using PHPUnit mocks—no DB needed. |
 | **VehicleConditionalCoverageTest**     | *Condition/decision coverage*        | Explicitly drives every boolean branch (`!$vehicle`, `!preg_match` etc.).                                             |
-| **VehicleDecisionCoverageTest**        | *Branch/decision coverage*           | Confirms each major branch in every controller method (all mocked).                                                   |
 | **VehicleEquivalencePartitioningTest** | *Equivalence partitioning*           | Splits inputs into valid/invalid classes and checks each.                                                             |
 | **VehicleIndependentCircuitsTest**     | *Path / cyclomatic-circuit coverage* | Executes distinct control-flow paths for maximum coverage.                                                            |
 
