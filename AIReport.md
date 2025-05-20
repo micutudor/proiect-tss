@@ -19,6 +19,7 @@ Functional (VehicleAIFunctionalTest):
 | -------------------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | **VehicleBoundaryTest**                | *Boundary value analysis*            | Tests create/get/delete at the minimum & maximum acceptable values (plates and IDs) using PHPUnit mocks—no DB needed. |
 | **VehicleConditionalCoverageTest**     | *Condition/decision coverage*        | Explicitly drives every boolean branch (`!$vehicle`, `!preg_match` etc.).                                             |
+| *VehicleDecisionCoverageTest*        | Branch/decision coverage           | Confirms each major branch in every controller method (all mocked).
 | **VehicleEquivalencePartitioningTest** | *Equivalence partitioning*           | Splits inputs into valid/invalid classes and checks each.                                                             |
 | **VehicleIndependentCircuitsTest**     | *Path / cyclomatic-circuit coverage* | Executes distinct control-flow paths for maximum coverage.                                                            |
 
@@ -32,7 +33,6 @@ Common traits of your suites
 | **Isolation level**          | True integration (real DB).              | Pure unit (mocks only).                                           |
 | **Granularity**              | 2 files: 1 structural, 1 functional.     | 5 focused files, each targeting a specific test design technique. |
 | **Infrastructure needs**     | Creates/drops tables, uses transactions. | None—runs anywhere.                                               |
-| **Licence-plate validation** | Only two cases.                          | Many cases: min/max length, too short/long, malformed, etc.       |
 | **CRUD coverage**            | Full flow in one test.                   | CRUD covered but broken into multiple, more granular tests.       |
 | **API-shape verification**   | Yes (structural test).                   | Not present—could be added.                                       |
 | **CI performance**           | Slower due to DB hits.                   | Very fast, ideal for every commit.                                |
