@@ -1,5 +1,10 @@
 # Vehicle Management API Tests
 
+## Used libraries
+
+- PHPUnit: used for writing unit tests in PHP.
+- Mockery: used for mocking
+  
 ## Features
 
 - Create new vehicle records
