@@ -28,7 +28,7 @@ Common traits of your suites
 - Tests are grouped by testing technique.
 
 ## 4. Key differences
-| Aspect                       | AI tests                                 | Your tests                                                        |
+| Aspect                       | AI tests                                 | Our tests                                                        |
 | ---------------------------- | ---------------------------------------- | ----------------------------------------------------------------- |
 | **Isolation level**          | True integration (real DB).              | Pure unit (mocks only).                                           |
 | **Granularity**              | 2 files: 1 structural, 1 functional.     | 5 focused files, each targeting a specific test design technique. |
