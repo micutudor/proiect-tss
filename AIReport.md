@@ -9,6 +9,7 @@ Structural (VehicleAIStructuralTest):
 - It checks if every required public method exists.
 - Implies the correct parameter count and also declared return types.
 - It doesn't execute business logic.
+  
 Functional (VehicleAIFunctionalTest):
 - Builds the schema and wraps every example in a DB trasaction.
 - Verifies full CRUD flow and also 2 negative scenarios.
