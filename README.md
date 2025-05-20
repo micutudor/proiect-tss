@@ -275,7 +275,8 @@ So the control-flow graph has a cyclomatic complexity of *12*, meaning there are
 ![CC1](https://github.com/user-attachments/assets/9ccfa45a-a10c-4785-9b49-937f6f335cd4)
 ![CC2](https://github.com/user-attachments/assets/0276290c-c0ac-425b-b535-eac7328ed13b)
 
-
+## Demo video
+![Link catre video](https://github.com/micutudor/proiect-tss/blob/main/2025-05-20%2020-37-44.mkv)
 
 ## Types of Tests
 
