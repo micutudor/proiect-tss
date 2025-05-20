@@ -37,7 +37,7 @@ Common traits of your suites
 | **CI performance**           | Slower due to DB hits.                   | Very fast                                |
 
 ## 5. Conclusion
-AI output supplies a minimal but valuable contract test and a true integration test.
+AI output supplies a minimal but valuable tests and a true integration test.
 
 Our suites deliver thorough unit-level coverage across multiple classic testing strategies.
 
