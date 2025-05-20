@@ -6,12 +6,12 @@ Original prompt: “For the following model class (Vehicle.php) and controller (
 
 ## 2. Summary of the AI-generated tests
 Structural (VehicleAIStructuralTest):
-• It checks if every required public method exists.
-• Implies the correct parameter count and also declared return types.
-• It doesn't execute business logic.
+- It checks if every required public method exists.
+- Implies the correct parameter count and also declared return types.
+- It doesn't execute business logic.
 Functional (VehicleAIFunctionalTest):
-• Builds the schema and wraps every example in a DB trasaction.
-• Verifies full CRUD flow and also 2 negative scenarios.
+- Builds the schema and wraps every example in a DB trasaction.
+- Verifies full CRUD flow and also 2 negative scenarios.
 
 ## 3. Summary of your current test suites
 | Suite                                  | Testing technique                    | Strengths                                                                                                             |
