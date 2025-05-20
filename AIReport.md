@@ -34,8 +34,7 @@ Common traits of your suites
 | **Granularity**              | 2 files: 1 structural, 1 functional.     | 5 focused files, each targeting a specific test design technique. |
 | **Infrastructure needs**     | Creates/drops tables, uses transactions. | None—runs anywhere.                                               |
 | **CRUD coverage**            | Full flow in one test.                   | CRUD covered but broken into multiple, more granular tests.       |
-| **API-shape verification**   | Yes (structural test).                   | Not present—could be added.                                       |
-| **CI performance**           | Slower due to DB hits.                   | Very fast, ideal for every commit.                                |
+| **CI performance**           | Slower due to DB hits.                   | Very fast                                |
 
 ## 5. Conclusion
 AI output supplies a minimal but valuable contract test and a true integration test.
