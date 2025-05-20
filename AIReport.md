@@ -24,8 +24,8 @@ Functional (VehicleAIFunctionalTest):
 | **VehicleIndependentCircuitsTest**     | *Path / cyclomatic-circuit coverage* | Executes distinct control-flow paths for maximum coverage.                                                            |
 
 Common traits of your suites
-• All rely on PHPUnit mocks, no external dependencies.
-• Tests are grouped by testing technique.
+- All rely on PHPUnit mocks, no external dependencies.
+- Tests are grouped by testing technique.
 
 ## 4. Key differences
 | Aspect                       | AI tests                                 | Your tests                                                        |
