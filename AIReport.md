@@ -39,5 +39,6 @@ Common traits of your suites
 
 ## 5. Conclusion
 AI output supplies a minimal but valuable contract test and a true integration test.
+
 Our suites deliver thorough unit-level coverage across multiple classic testing strategies.
 
